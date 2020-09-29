@@ -1,0 +1,22 @@
+Requiremets for E-Flutter
+
+1) Allow buy and sell interactions between users.
+2) Allow chat comunication between users.
+3) Allow user to register, login and manage roles if they are admins.
+4) Show user location within a map it must be inside the user publication page (user can choose).
+5) Allow user to publish products he wants to sell.
+6) Allow user to take products pictures and publish.
+7) Must keep account of transaction made between users.
+8) Chats data must be deleted once a day at 00:00:00.
+9) Must have push notifications.
+10) Allow user to see his sell reports between dates.
+11) Allow user to see his purchase reports between dates.
+12) Implement local user data storage with sqlite. 
+13) Implemet centralized storage to store user data, transactions and publications on firebase.
+14) Implement token sessions with JWT.
+15) Back-end must be implemented with node JS.
+16) Front-end must be implemented with flutter.
+17) Implement products feed like mercado libre without categories.
+18) Main screen must be the products feed.
+19) Feed must be limited to five products after this user must ask for more by pushing a button.
+
