@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ChatPage extends StatelessWidget {
-  static String id = 'ChatPage';
-
+class WelcomePage extends StatelessWidget {
+  static String id = 'WelcomePage';
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('CHAT PAGE'),
+      child: Text('WELCOME'),
     );
   }
 }

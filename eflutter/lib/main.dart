@@ -1,11 +1,16 @@
+import 'package:eflutter/chat/chatDashboardPage.dart';
+import 'package:eflutter/chat/chatPage.dart';
+import 'package:eflutter/login/loginPage.dart';
 import 'package:eflutter/models/SettingsData.dart';
 import 'package:eflutter/profile/profileSettings/profileSettingsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './profile/profilePage.dart';
+import 'WelcomePage.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -13,25 +18,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context)=> SettingsData(),
+      create: (context) => SettingsData(),
       child: MaterialApp(
-        theme: ThemeData(
-          primaryColorDark: Colors.black12,
-          bottomSheetTheme: BottomSheetThemeData(
-            backgroundColor: Colors.white54,
-          ),
-          unselectedWidgetColor: Colors.white54,
-        ),
-        initialRoute: ProfilePage.id,
+        debugShowCheckedModeBanner: false,
+        initialRoute: LoginPage.id,
         routes: {
-          // Login section
-
-          // User profile section
+          WelcomePage.id: (context) => WelcomePage(),
+          LoginPage.id: (context) => LoginPage(),
           ProfilePage.id: (context) => ProfilePage(),
           ProfileSettingsPage.id: (context) => ProfileSettingsPage(),
-          // Chats section
+          ChatPage.id: (context) => ChatPage(),
+          ChatDashboard.id: (context) => ChatDashboard(),
         },
       ),
     );
   }
 }
+

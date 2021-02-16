@@ -6,7 +6,9 @@ import 'package:path/path.dart';
 class SqliteManager {
   static Database _db;
 
-  static Future<Database >get reference async {
+  // Este getter inicializa la base de datos en caso de esta no existir
+  // (Cuando la app se ejecuta por primera vez en un dispositivo, por ejemplo)
+  static Future<Database>get reference async {
     WidgetsFlutterBinding.ensureInitialized();
     print('Starting DB connection');
 
@@ -16,7 +18,7 @@ class SqliteManager {
       // Create settings table and populate it when DB is created
       onCreate: (db, version) async {
         print('ENTRA A ON CREATE');
-        return await initDB();
+        return await initDB(db);
       },
       version: 1,
     );
@@ -24,11 +26,11 @@ class SqliteManager {
     return _db;
   }
 
-  static Future<void >initDB() async {
+  static Future<void>initDB(Database db) async {
     Setting setting;
     setting = new Setting();
 
-    await _db.execute(
+    await db.execute(
       "CREATE TABLE settings(id INTEGER PRIMARY KEY AUTOINCREMENT,"
           "description TEXT, value TEXT); "
     );
@@ -36,7 +38,7 @@ class SqliteManager {
     try{
       setting.description = 'sounds';
       setting.value = '1';
-      _db.insert(
+      db.insert(
         'settings',
         setting.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace,
@@ -44,13 +46,14 @@ class SqliteManager {
 
       setting.description = 'notifications';
       setting.value = '1';
-      _db.insert(
+      db.insert(
         'settings',
         setting.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
     }
     catch(e){
+      print("ERROR EN sqliteManager: " + e);
     }
   }
 }
